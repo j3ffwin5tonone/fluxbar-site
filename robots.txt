@@ -1,0 +1,15 @@
+# robots.txt for fluxbar.app
+
+User-agent: *
+Allow: /
+
+# Exclude internal files and misc assets from being indexed
+Disallow: /404.html
+Disallow: /manifest.json
+Disallow: /favicon.ico
+
+# Allow important legal pages
+Allow: /privacy.html
+Allow: /impressum.html
+
+Sitemap: https://fluxbar.app/sitemap.xml
