@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FluxBar – Real-Time System Monitor for macOS</title>
     <meta name="description" content="FluxBar is a minimal macOS menu bar app for real-time CPU, memory, and network monitoring.">
+
     <style>
-        /* Global reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Color palette based on logo */
         :root {
             --bg-dark: #2e3236;
             --bg-card: #3a3f44;
             --text-light: #f1f1f1;
             --text-muted: #c7c7c7;
-            --accent: #ffffff;
             --radius: 22px;
         }
 
@@ -124,12 +122,14 @@
             margin-top: 40px;
             font-size: 0.9em;
             color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 25px;
         }
 
         .footer a {
             color: #ffffff;
             text-decoration: none;
-            margin: 0 12px;
         }
 
         .footer a:hover {
@@ -146,6 +146,10 @@
             }
             h1 {
                 font-size: 2.1em;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 12px;
             }
         }
     </style>
@@ -169,7 +173,7 @@
         <div class="features">
             <div class="feature">
                 <h3>Privacy First</h3>
-                <p>All data stays on your Mac. FluxBar never sends any metrics to external servers.</p>
+                <p>All metrics are processed locally on your Mac. FluxBar never sends any data to external servers.</p>
             </div>
             <div class="feature">
                 <h3>Native macOS Design</h3>
@@ -177,11 +181,11 @@
             </div>
             <div class="feature">
                 <h3>Customizable</h3>
-                <p>Choose what you want to track and control refresh intervals.</p>
+                <p>Choose which metrics to display and set custom refresh intervals.</p>
             </div>
             <div class="feature">
                 <h3>Lightweight</h3>
-                <p>Designed to run quietly without slowing down your system.</p>
+                <p>Runs quietly in the background without slowing down your system.</p>
             </div>
         </div>
 
@@ -191,6 +195,7 @@
 
         <div class="footer">
             <a href="privacy.html">Privacy</a>
+            <a href="impressum.html">Impressum</a>
             <a href="mailto:support@fluxbar.app">Support</a>
         </div>
 
