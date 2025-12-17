@@ -136,6 +136,46 @@
             text-decoration: underline;
         }
 
+        .screenshots {
+            margin: 50px 0;
+        }
+
+        .screenshots h2 {
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .screenshot-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--radius);
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .screenshot-caption {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-top: 12px;
+            text-align: center;
+        }
+
         @media(max-width: 600px) {
             .container {
                 padding: 40px 24px;
@@ -150,6 +190,9 @@
             .footer {
                 flex-direction: column;
                 gap: 12px;
+            }
+            .screenshot-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -194,6 +237,24 @@
             <div class="feature">
                 <h3>Lightweight</h3>
                 <p>Runs quietly in the background using minimal resources without slowing down your system.</p>
+            </div>
+        </div>
+
+        <div class="screenshots">
+            <h2>Screenshots</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="Menubar1.png" alt="FluxBar menu bar display showing CPU, memory, and network metrics">
+                    <p class="screenshot-caption">Real-time metrics in your menu bar</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="Menubar2.png" alt="FluxBar detailed CPU metrics with per-core visualization">
+                    <p class="screenshot-caption">Detailed CPU monitoring with per-core stats</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="Menubar3.png" alt="FluxBar customization options with color themes">
+                    <p class="screenshot-caption">Fully customizable colors and themes</p>
+                </div>
             </div>
         </div>
 
