@@ -1,273 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FluxBar – Real-Time System Monitor for macOS</title>
-    <meta name="description" content="FluxBar is a minimal macOS menu bar app for real-time CPU, memory, and network monitoring with per-core details and process tracking.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>FluxBar – Real-Time System Monitor for macOS</title>
+<meta name="description" content="FluxBar is a minimal macOS menu bar app for real-time CPU, memory, and network monitoring with per-core details.">
 
-        :root {
-            --bg-dark: #2e3236;
-            --bg-card: #3a3f44;
-            --text-light: #f1f1f1;
-            --text-muted: #c7c7c7;
-            --radius: 22px;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
+:root {
+    --bg-dark: #2e3236;
+    --bg-card: #3a3f44;
+    --text-light: #f1f1f1;
+    --text-muted: #c7c7c7;
+    --radius: 22px;
+}
 
-        .container {
-            background: var(--bg-card);
-            border-radius: var(--radius);
-            max-width: 720px;
-            width: 100%;
-            padding: 60px 50px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.4);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 60px 20px;
+}
 
-        .logo {
-            width: 180px;
-            margin: 0 auto 40px;
-            border-radius: 28px;
-            overflow: hidden;
-        }
+/* --- MAIN CONTENT CARD --- */
+.container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+}
 
-        .logo img {
-            width: 100%;
-            display: block;
-        }
+/* --- HEADER --- */
+.logo {
+    width: 180px;
+    margin: 0 auto 40px;
+    border-radius: 28px;
+    overflow: hidden;
+}
 
-        h1 {
-            font-size: 2.6em;
-            margin-bottom: 15px;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            font-weight: 600;
-        }
+.logo img {
+    width: 100%;
+    display: block;
+}
 
-        .tagline {
-            font-size: 1.25em;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-            font-weight: 400;
-        }
+h1 {
+    font-size: 2.6em;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
 
-        .description {
-            color: var(--text-light);
-            font-size: 1.05em;
-            line-height: 1.7;
-            margin-bottom: 45px;
-        }
+.tagline {
+    font-size: 1.25em;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
 
-        .features {
-            display: grid;
-            gap: 20px;
-            margin-bottom: 50px;
-        }
+.description {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 48px;
+}
 
-        .feature {
-            background: rgba(255,255,255,0.05);
-            padding: 20px 24px;
-            border-radius: var(--radius);
-            text-align: left;
-        }
+/* --- FEATURES --- */
+.features {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 60px;
+}
 
-        .feature h3 {
-            color: #ffffff;
-            margin-bottom: 6px;
-            font-size: 1.04em;
-            font-weight: 600;
-        }
+.feature {
+    background: rgba(255,255,255,0.05);
+    padding: 22px 26px;
+    border-radius: var(--radius);
+    text-align: left;
+}
 
-        .feature p {
-            color: var(--text-muted);
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
+.feature h3 {
+    margin-bottom: 6px;
+    font-size: 1.05em;
+    font-weight: 600;
+}
 
-        .cta {
-            margin-bottom: 30px;
-        }
+.feature p {
+    color: var(--text-muted);
+    font-size: 0.95em;
+    line-height: 1.5;
+}
 
-        .coming-soon {
-            display: inline-block;
-            padding: 15px 38px;
-            background: #ffffff;
-            color: #000000;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1.1em;
-            text-decoration: none;
-        }
+/* --- SCREENSHOTS SECTION (FULL WIDTH) --- */
+.screenshots {
+    margin: 80px auto;
+    width: 100%;
+}
 
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
+.screenshots h2 {
+    text-align: center;
+    font-size: 1.9em;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
 
-        .footer a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+/* stack vertically */
+.screenshot-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+/* visual card */
+.screenshot-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--radius);
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
 
-        .screenshots {
-            margin: 50px 0;
-        }
+/* THIS enables 1280px growth */
+.screenshot-media {
+    max-width: 1280px;
+    margin: 0 auto;
+}
 
-        .screenshots h2 {
-            font-size: 1.8em;
-            color: #ffffff;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
+.screenshot-media img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    cursor: zoom-in;
+}
 
-        .screenshot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+.screenshot-caption {
+    margin-top: 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95em;
+}
 
-        .screenshot-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: var(--radius);
-            padding: 15px;
-            overflow: hidden;
-        }
+/* --- CTA --- */
+.cta {
+    margin: 60px 0 20px;
+    text-align: center;
+}
 
-        .screenshot-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            display: block;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
+.coming-soon {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #ffffff;
+    color: #000;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1.1em;
+}
 
-        .screenshot-caption {
-            color: var(--text-muted);
-            font-size: 0.9em;
-            margin-top: 12px;
-            text-align: center;
-        }
+/* --- FOOTER --- */
+.footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
 
-        @media(max-width: 600px) {
-            .container {
-                padding: 40px 24px;
-            }
-            .logo {
-                width: 140px;
-                margin-bottom: 30px;
-            }
-            h1 {
-                font-size: 2.1em;
-            }
-            .footer {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .screenshot-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- LIGHTBOX --- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.78);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    z-index: 9999;
+}
+
+.lightbox.is-open {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: min(1400px, 95vw);
+    max-height: 92vh;
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+}
+
+.lightbox-hint {
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95em;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 600px) {
+    .container {
+        padding: 40px 24px;
+    }
+    .logo {
+        width: 140px;
+    }
+    h1 {
+        font-size: 2.1em;
+    }
+    .footer {
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
 
-        <div class="logo">
-            <img src="FluxBar_Logo.png" alt="FluxBar logo">
-        </div>
-
-        <h1>FluxBar</h1>
-        <p class="tagline">Minimal real-time monitoring for macOS</p>
-
-        <p class="description">
-            Monitor CPU usage, memory pressure, and network activity directly in your macOS menu bar.
-            Fast, lightweight, privacy-focused — no telemetry, no cloud services, no user tracking.
-        </p>
-
-        <div class="features">
-            <div class="feature">
-                <h3>Privacy First</h3>
-                <p>All metrics are processed locally on your Mac. FluxBar never sends any data to external servers.</p>
-            </div>
-            <div class="feature">
-                <h3>Detailed Monitoring</h3>
-                <p>Per-core CPU usage with temperature, memory pressure tracking, top process monitoring, and network speeds.</p>
-            </div>
-            <div class="feature">
-                <h3>Highly Customizable</h3>
-                <p>Choose which metrics to display, customize icon styles (SF Symbols, Emoji, Dots, Bars, None), color themes, text sizes, and set refresh intervals (1, 2, or 5 seconds).</p>
-            </div>
-            <div class="feature">
-                <h3>Native macOS Design</h3>
-                <p>Built with SwiftUI and optimized for macOS 13.0+. Works seamlessly on both Intel and Apple Silicon Macs.</p>
-            </div>
-            <div class="feature">
-                <h3>Data Export</h3>
-                <p>Export system metrics to CSV or JSON for analysis. Optional continuous logging for long-term monitoring.</p>
-            </div>
-            <div class="feature">
-                <h3>Lightweight</h3>
-                <p>Runs quietly in the background using minimal resources without slowing down your system.</p>
-            </div>
-        </div>
-
-        <div class="screenshots">
-            <h2>Screenshots</h2>
-            <div class="screenshot-grid">
-                <div class="screenshot-item">
-                    <img src="Menubar1.png" alt="FluxBar menu bar display showing CPU, memory, and network metrics">
-                    <p class="screenshot-caption">Real-time metrics in your menu bar</p>
-                </div>
-                <div class="screenshot-item">
-                    <img src="Menubar2.png" alt="FluxBar detailed CPU metrics with per-core visualization">
-                    <p class="screenshot-caption">Detailed CPU monitoring with per-core stats</p>
-                </div>
-                <div class="screenshot-item">
-                    <img src="Menubar3.png" alt="FluxBar customization options with color themes">
-                    <p class="screenshot-caption">Fully customizable colors and themes</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="cta">
-            <span class="coming-soon">Coming soon to the Mac App Store</span>
-        </div>
-
-        <div class="footer">
-            <a href="privacy.html">Privacy</a>
-            <a href="Impressum.html">Impressum</a>
-            <a href="mailto:support@fluxbar.app">Support</a>
-        </div>
-
+<div class="container">
+    <div class="logo">
+        <img src="FluxBar_Logo.png" alt="FluxBar logo">
     </div>
+
+    <h1>FluxBar</h1>
+    <p class="tagline">Minimal real-time monitoring for macOS</p>
+
+    <p class="description">
+        Monitor CPU usage, memory pressure, and network activity directly in your macOS menu bar.
+        Fast, lightweight, privacy-focused — no telemetry, no cloud services, no user tracking.
+    </p>
+
+    <div class="features">
+        <div class="feature">
+            <h3>Privacy First</h3>
+            <p>All metrics are processed locally on your Mac. No data ever leaves your device.</p>
+        </div>
+        <div class="feature">
+            <h3>Detailed Monitoring</h3>
+            <p>Per-core CPU usage, memory pressure, top processes, and live network speeds.</p>
+        </div>
+        <div class="feature">
+            <h3>Highly Customizable</h3>
+            <p>Choose metrics, colors, icon styles, refresh rates, and alerts.</p>
+        </div>
+        <div class="feature">
+            <h3>Native macOS Design</h3>
+            <p>Built with SwiftUI for macOS 13+ on Intel and Apple Silicon.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SCREENSHOTS (OUTSIDE CARD) -->
+<section class="screenshots">
+    <h2>Screenshots</h2>
+
+    <div class="screenshot-grid">
+        <div class="screenshot-item">
+            <div class="screenshot-media">
+                <img src="Menubar1.png" alt="FluxBar real-time menu bar metrics">
+            </div>
+            <p class="screenshot-caption">Real-time system metrics directly in your menu bar</p>
+        </div>
+
+        <div class="screenshot-item">
+            <div class="screenshot-media">
+                <img src="Menubar2.png" alt="FluxBar detailed CPU view with per-core usage">
+            </div>
+            <p class="screenshot-caption">Detailed per-core CPU monitoring</p>
+        </div>
+
+        <div class="screenshot-item">
+            <div class="screenshot-media">
+                <img src="Menubar3.png" alt="FluxBar customization options and color themes">
+            </div>
+            <p class="screenshot-caption">Fully customizable colors and styles</p>
+        </div>
+    </div>
+</section>
+
+<div class="cta">
+    <span class="coming-soon">Coming soon to the Mac App Store</span>
+</div>
+
+<div class="footer">
+    <a href="privacy.html">Privacy</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="mailto:support@fluxbar.app">Support</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <img id="lightboxImg" alt="">
+    <div class="lightbox-hint">Click anywhere or press Esc to close</div>
+</div>
+
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+document.querySelectorAll('.screenshot-media img').forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('is-open');
+    });
+});
+
+lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('is-open');
+    lightboxImg.src = '';
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        lightbox.classList.remove('is-open');
+        lightboxImg.src = '';
+    }
+});
+</script>
+
 </body>
 </html>
