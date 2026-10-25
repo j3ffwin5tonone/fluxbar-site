@@ -83,14 +83,16 @@ Release die echte Store-URL unter `schafkopf.app_store_url` ergänzen und neu ba
 
 ## Datenschutz und rechtliche Umsetzung
 
-Die Seite nutzt keine Analyse- oder Werbedienste, keine eingebetteten
-Drittanbieter-Widgets, keine Cookies und keinen Browser-Speicher. Schriften und
+Der eigene Seitencode nutzt keine Besucheranalyse oder Werbedienste, keine
+eingebetteten Drittanbieter-Widgets, keine eigenen Cookies und keinen
+Browser-Speicher. Cloudflares bestehende Sicherheitsverarbeitung und mögliche
+technisch erforderliche Cookies werden gesondert erläutert. Schriften und
 Bilder werden lokal ausgeliefert. Das Kontaktformular lädt keine Fremdskripte;
 erst beim Absenden wird an den konfigurierten Dienst übertragen. Die
 Content-Security-Policy erlaubt auf der Formularseite nur den vorgesehenen
 Formularanbieter und die eigene Erfolgsseite als Formularziele.
 
-Website-Hosting über GitHub Pages, Kontaktbearbeitung, der Formulardienst und die
+Website-Hosting über GitHub Pages mit vorgeschaltetem Cloudflare, Kontaktbearbeitung, der Formulardienst und die
 App-Verarbeitung sind in den Datenschutzhinweisen getrennt beschrieben. GitHub
 protokolliert nach eigener Angabe Besucher-IP-Adressen; es wird daher keine
 pauschale Behauptung aufgestellt, die Website verarbeite keinerlei Daten.
@@ -121,3 +123,8 @@ responsive Varianten eingebunden. Die Schrift Figtree ist lokal gehostet; ihr
 SIL-OFL-Lizenztext liegt unter `assets/fonts/FIGTREE-LICENSE.txt`. Eigene Bilder
 und Texte bleiben urheberrechtlich geschützt. Lizenztexte der App sind über die
 verlinkte Downloadseite und innerhalb der App erreichbar.
+
+Der Live-Abruf bestätigt einen vorgeschalteten Cloudflare-Proxy. E-Mail-Adressen
+werden mit den dokumentierten `email_off`-Markierungen vor der automatischen
+Verschleierung geschützt, damit die Kontaktangaben ohne JavaScript lesbar und
+anklickbar bleiben. Sonstige Cloudflare-Einstellungen wurden nicht verändert.
