@@ -1,5 +1,2 @@
 User-agent: *
 Allow: /
-Disallow: /scripts/
-Disallow: /site.json
-Sitemap: https://fluxbar.app/sitemap.xml
